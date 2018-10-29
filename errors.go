@@ -180,7 +180,7 @@ func (w *withStack) Format(s fmt.State, verb rune) {
 // If err is nil, Wrap returns nil.
 func Wrap(err error, message string) error {
 	if err == nil {
-		return nil
+		err = fmt.Errorf("missing err param in Wrap")
 	}
 	err = &withMessage{
 		cause: err,
@@ -197,7 +197,7 @@ func Wrap(err error, message string) error {
 // If err is nil, Wrapf returns nil.
 func Wrapf(err error, format string, args ...interface{}) error {
 	if err == nil {
-		return nil
+		err = fmt.Errorf("missing err param in Wrapf")
 	}
 	err = &withMessage{
 		cause: err,
@@ -213,7 +213,7 @@ func Wrapf(err error, format string, args ...interface{}) error {
 // If err is nil, WithMessage returns nil.
 func WithMessage(err error, message string) error {
 	if err == nil {
-		return nil
+		err = fmt.Errorf("missing err param in WithMessage")
 	}
 	return &withMessage{
 		cause: err,
@@ -229,7 +229,7 @@ func WithMessagef(err error, format string, args ...interface{}) error {
 	}
 	return &withMessage{
 		cause: err,
-		msg: fmt.Sprintf(format, args...),
+		msg:   fmt.Sprintf(format, args...),
 	}
 }
 

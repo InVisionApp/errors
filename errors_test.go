@@ -29,8 +29,8 @@ func TestNew(t *testing.T) {
 
 func TestWrapNil(t *testing.T) {
 	got := Wrap(nil, "no error")
-	if got != nil {
-		t.Errorf("Wrap(nil, \"no error\"): got %#v, expected nil", got)
+	if got == nil {
+		t.Errorf("Wrap(nil, \"no error\"): got nil, expected 'missing err param in Wrap'")
 	}
 }
 
@@ -85,9 +85,6 @@ func TestCause(t *testing.T) {
 		err:  x, // return from errors.New
 		want: x,
 	}, {
-		WithMessage(nil, "whoops"),
-		nil,
-	}, {
 		WithMessage(io.EOF, "whoops"),
 		io.EOF,
 	}, {
@@ -108,8 +105,8 @@ func TestCause(t *testing.T) {
 
 func TestWrapfNil(t *testing.T) {
 	got := Wrapf(nil, "no error")
-	if got != nil {
-		t.Errorf("Wrapf(nil, \"no error\"): got %#v, expected nil", got)
+	if got == nil {
+		t.Errorf("Wrapf(nil, \"no error\"): got nil, expected 'missing err param in Wrapf'")
 	}
 }
 
@@ -175,8 +172,8 @@ func TestWithStack(t *testing.T) {
 
 func TestWithMessageNil(t *testing.T) {
 	got := WithMessage(nil, "no error")
-	if got != nil {
-		t.Errorf("WithMessage(nil, \"no error\"): got %#v, expected nil", got)
+	if got == nil {
+		t.Errorf("WithMessage(nil, \"no error\"): got nil, expected 'missing err param in WithMessage'")
 	}
 }
 
